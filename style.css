@@ -1,0 +1,31 @@
+.contenedor{
+    display: flex;
+    justify-tracks: center;
+    
+    }
+    
+    
+    .imagen-1{
+        width: 350px;
+        height: 250px;
+        border-radius: 25px;
+        margin-right: 90px;
+    }
+    
+    .imagen-2{
+        align-self: center;
+        width: 350px;
+        height: 250px;
+        border-radius: 25px;
+        margin-right: 100px;
+    }
+    
+    .imagen-3{
+        
+        width: 350px;
+        height: 250px;
+        border-radius: 25px;
+        margin-right: 100px;
+    }
+    
+   
