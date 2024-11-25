@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votaciones</title>
+
+    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel="stylesheet" href="style.css">
+    </head>
+    </body>
+    
+    <body bgcolor="5ad7e1" 
+    ></body><div align="center">
+      <h1
+      style="color:black;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 70px;
+      align-self:center;
+      "
+       >Candidatos</h1>
+    
+    </body>
+    <form>
+    <body>
+      <h1>
+        <div class="content">
+            <img class="imagen-1"  src="Candidato1.JPG.jpeg" alt="">
+            </div>
+        - Candidata 1: Samira Torres Huapaya- 1roA<p>
+     - Propuestas:  Implementar un programa de "Amigos de la Convivencia" donde estudiantes
+      voluntarios ayuden a resolver conflictos entre compañeros.<p>
+     - Creación de un espacio de diálogo abierto para estudiantes; Talleres de habilidades sociales.
+        <div class="content">
+            <img class="imagen-2"  src="Candidato2.JPG.jpeg" alt="">
+            </div>
+        -  Candidata 2: Sara Zavala Gómez - 4toA <p>
+    - Propuestas:  Coordinar el programa de "Amigos de la Convivencia" y dar seguimiento a los casos.<p>
+    - Organizar actividades de integración entre estudiantes;  Promover la cultura de respeto y tolerancia. 
+        <div class="content">
+            <img class="imagen-3"  src="Candidato3.JPG.jpeg" alt="">
+            </div>
+        - Candidata 3 :Elizabeth Garriazo Pozo- 4toB <p>
+    - Propuestas: Organizar un taller de reciclaje creativo para
+     crear productos que puedan ser donados o vendidos.<p>
+    -  Talleres de manualidades;  Feria de intercambio de libros y materiales escolares.
+      </h1>           
+    </body>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .opcion {
+            margin: 10px 0;
+        }
+        .boton {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .boton:hover {
+            background-color: #45a049;
+        }
+        .resultados {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Elecciones: Vota por tu opción favorita</h1>
+    <div class="opciones">
+        <div class="opcion">
+            <button class="boton" onclick="votar('Opción 1')">Votar por Candidato 1</button>
+        </div>
+        <div class="opcion">
+            <button class="boton" onclick="votar('Opción 2')">Votar por Candidato 2</button>
+        </div>
+        <div class="opcion">
+            <button class="boton" onclick="votar('Opción 3')">Votar por Candidato 3</button>
+        </div>
+    </div>
+
+    <h2>Resultados</h2>
+    <div id="resultados" class="resultados"></div>
+
+    <script>
+         // Inicializar resultados de votaciones en localStorage si no existen
+         const opciones = ["Candidato 1", "Candidato 2", "Candidato 3"];
+        if (!localStorage.getItem("votos")) {
+            const votosIniciales = { "Candidato 1": 0, "Candidato 2": 0, "Candidato 3": 0 };
+            localStorage.setItem("votos", JSON.stringify(votosIniciales));
+        }
+
+        // Función para votar por una opción
+        function votar(opcion) {
+            const votos = JSON.parse(localStorage.getItem("votos"));
+            votos[opcion]++;
+            localStorage.setItem("votos", JSON.stringify(votos));
+            mostrarResultados();
+            alert(`¡Gracias por votar por ${opcion}!`);
+        }
+
+        // Función para mostrar los resultados
+        function mostrarResultados() {
+            const votos = JSON.parse(localStorage.getItem("votos"));
+            const resultadosDiv = document.getElementById("resultados");
+            resultadosDiv.innerHTML = ""; // Limpiar resultados previos
+
+            for (const [opcion, cantidad] of Object.entries(votos)) {
+                const resultado = document.createElement("p");
+                resultado.textContent = `${opcion}: ${cantidad} votos`;
+                resultadosDiv.appendChild(resultado);
+            }
+        }
+
+        // Mostrar resultados al cargar la página
+        mostrarResultados();
+    </script>
+</body>
+
+<style>
+    a {
+        display: block;
+        width: 300px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700px;
+        border-radius: 10px;
+        margin: 15px 13px;
+        padding: 15px 30px;
+        background-color: aliceblue;
+    }
+    
+    
+    </style>
+    <body>
+        <a type="button" href="destino.html">Regresar a anterior pagina</a> 
+    </body>
+
+</html>

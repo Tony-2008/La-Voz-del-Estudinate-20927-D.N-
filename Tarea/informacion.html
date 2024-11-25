@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de votaciones</title>
+
+    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel="stylesheet" href="style.css">
+    </head>
+    </body>
+    
+    <body bgcolor="5ad7e1" 
+    ></body><div align="center">
+      <h1
+      style="color:black;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 70px;
+      align-self:center;
+      "
+       >Candidatos</h1>
+    
+    </body>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .opcion {
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .resultados {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selecciona tu candidato favorita y vota:</h1>
+    <div id="opciones">
+        <!-- Las opciones de votación aparecerán aquí -->
+    </div>
+    <button id="btnVotar">Votar</button>
+
+    <h2 class="resultados">Resultados:</h2>
+    <div id="resultados">
+        <!-- Los resultados aparecerán aquí -->
+    </div>
+
+    <script>
+        // Opciones de votación
+        const opciones = [
+            { id: 1, nombre: "Candidato 1", votos: 0 },
+            { id: 2, nombre: "Candidato 2", votos: 0 },
+            { id: 3, nombre: "Candidato 3", votos: 0 }
+        ];
+
+        // Función para mostrar las opciones de votación
+        function mostrarOpciones() {
+            const contenedor = document.getElementById("opciones");
+            contenedor.innerHTML = "";
+            opciones.forEach(opcion => {
+                const div = document.createElement("div");
+                div.className = "opcion";
+                div.innerHTML = `
+                    <input type="radio" name="voto" value="${opcion.id}" id="opcion-${opcion.id}">
+                    <label for="opcion-${opcion.id}">${opcion.nombre}</label>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        // Función para registrar el voto
+        function votar() {
+            const seleccionada = document.querySelector('input[name="voto"]:checked');
+            if (!seleccionada) {
+                alert("Por favor, selecciona una opción antes de votar.");
+                return;
+            }
+
+            const idSeleccionado = parseInt(seleccionada.value);
+            const opcion = opciones.find(op => op.id === idSeleccionado);
+            if (opcion) {
+                opcion.votos += 1;
+                alert(`¡Gracias por votar por ${opcion.nombre}!`);
+                mostrarResultados();
+            }
+        }
+
+        // Función para mostrar los resultados
+        function mostrarResultados() {
+            const contenedor = document.getElementById("resultados");
+            contenedor.innerHTML = "";
+            opciones.forEach(opcion => {
+                const div = document.createElement("div");
+                div.innerHTML = `
+                    <strong>${opcion.nombre}:</strong> ${opcion.votos} votos
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        // Configurar eventos
+        document.getElementById("btnVotar").addEventListener("click", votar);
+
+        // Inicializar la página
+        mostrarOpciones();
+        mostrarResultados();
+    </script>
+</body>
+</html>
+
+

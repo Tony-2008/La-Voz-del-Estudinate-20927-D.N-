@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Destino</title>
+
+    <link rel="stylesheet" href="style.css">
+    </head>
+    </body>
+
+    <body bgcolor="5ad7e1" 
+    ></body><div align="center">
+      <h1
+      style="color:black;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 70px;
+      align-self:center;
+      "
+       >LA VOZ DEL ESTUDIANTE 20927</h1>
+    
+    </body>
+
+
+
+<form>
+    <div class="mb-3">
+      <h1>
+        "La voz del estudiante" donde la comunidad estudiantil de la I.E.P N°20927-
+         Dignidad Nacional puede elegir a sus representantes del Municipio escolar,
+         debatir temas relevantes, votar por iniciativas, tener una comunicación 
+         directa y poder analizar un seguimiento de propuestas que los involucra.
+
+      </h1>
+
+
+
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Comentarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .comentario {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .comentario h4 {
+            margin: 0 0 5px;
+        }
+        .comentario p {
+            margin: 0;
+        }
+        .formulario {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Página de Comentarios</h1>
+    <div class="formulario">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" placeholder="Tu nombre" required><br><br>
+        <label for="comentario">Comentario:</label><br>
+        <textarea id="comentario" rows="4" cols="50" placeholder="Escribe tu comentario aquí..." required></textarea><br><br>
+        <button id="btnEnviar">Enviar Comentario</button>
+    </div>
+
+    <h2>Opiniones de otros usuarios:</h2>
+    <div id="listaComentarios"></div>
+
+    <script>
+        // Función para cargar los comentarios guardados
+        function cargarComentarios() {
+            const comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+            const lista = document.getElementById("listaComentarios");
+            lista.innerHTML = ""; // Limpiar comentarios previos
+
+            comentarios.forEach((comentario) => {
+                const div = document.createElement("div");
+                div.className = "comentario";
+                div.innerHTML = `
+                    <h4>${comentario.nombre}</h4>
+                    <p>${comentario.texto}</p>
+                `;
+                lista.appendChild(div);
+            });
+        }
+
+        // Función para guardar un nuevo comentario
+        document.getElementById("btnEnviar").addEventListener("click", function () {
+            const nombre = document.getElementById("nombre").value.trim();
+            const texto = document.getElementById("comentario").value.trim();
+
+            if (nombre === "" || texto === "") {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            const nuevoComentario = { nombre, texto };
+            const comentarios = JSON.parse(localStorage.getItem("comentarios")) || [];
+            comentarios.push(nuevoComentario);
+
+            // Guardar en localStorage
+            localStorage.setItem("comentarios", JSON.stringify(comentarios));
+
+            // Limpiar campos y recargar comentarios
+            document.getElementById("nombre").value = "";
+            document.getElementById("comentario").value = "";
+            cargarComentarios();
+        });
+
+        // Cargar comentarios al inicio
+        cargarComentarios();
+    </script>
+</body>
+
+</body>
+
+<style>
+    a {
+        display: block;
+        width: 300px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700px;
+        border-radius: 10px;
+        margin: 15px 13px;
+        padding: 15px 30px;
+        background-color: aliceblue;
+    }
+    
+    
+    </style>
+    <body>
+        <a type="button" href="destino.html">Regresar a anterior pagina</a> 
+    </body>
+</html>
