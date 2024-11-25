@@ -64,7 +64,7 @@
     </style>
 </head>
 <body>
-    <p>Elige las iniciativas que te parezcan más importantes:</p>
+    <p>Elige a tu representante favorito:</p>
 
     <div id="iniciativas">
         <div class="iniciativa">
@@ -78,7 +78,12 @@
             <button class="boton" onclick="votar('mantenimiento')">Votar</button>
         </div>
         <div class="iniciativa">
-            <h3>Más equipo deportivo</h3>
+            <h3><div class="content">
+            <img class="imagen-2"  src="Candidato2.JPG.jpeg" alt="">
+            </div>
+        -  Candidata 2: Sara Zavala Gómez - 4toA <p>
+    - Propuestas:  Coordinar el programa de "Amigos de la Convivencia" y dar seguimiento a los casos.<p>
+    - Organizar actividades de integración entre estudiantes;  Promover la cultura de respeto y tolerancia. </h3>
             <button class="boton" onclick="votar('equipoDeportivo')">Votar</button>
         </div>
         <div class="iniciativa">
@@ -86,7 +91,13 @@
             <button class="boton" onclick="votar('donacionesProyectores')">Votar</button>
         </div>
         <div class="iniciativa">
-          <h3>Donaciones de Libros</h3>
+          <h3><div class="content">
+            <img class="imagen-3"  src="Candidato3.JPG.jpeg" alt="">
+            </div>
+        - Candidata 3 :Elizabeth Garriazo Pozo- 4toB <p>
+    - Propuestas: Organizar un taller de reciclaje creativo para
+     crear productos que puedan ser donados o vendidos.<p>
+    -  Talleres de manualidades;  Feria de intercambio de libros y materiales escolares.</h3>
           <button class="boton" onclick="votar('donacionesLibros')">Votar</button>
       </div>
     </div>
@@ -97,20 +108,18 @@
     <script>
         // Opciones de iniciativas
         const iniciativas = {
-            mantenimiento: "Mejor mantenimiento de computadoras",
-            equipoDeportivo: "Más equipo deportivo",
-            donacionesProyectores: "Donaciones de proyectores",
-            donacionesLibros: "Donaciones de Libros",
-
+            candidato1: "Candidato 1",
+            candidato2: "Candidato 2",
+            candidato3: "Candidato 3",
+            
         };
 
         // Inicializar votos en localStorage si no existen
         if (!localStorage.getItem("votosIniciativas")) {
             const votosIniciales = {
-                mantenimiento: 0,
-                equipoDeportivo: 0,
-                donacionesProyectores: 0,
-                donacionesLibros: 0,
+                candidato1: 0,
+                candidato2: 0,
+                candidato3: 0,
 
             };
             localStorage.setItem("votosIniciativas", JSON.stringify(votosIniciales));
