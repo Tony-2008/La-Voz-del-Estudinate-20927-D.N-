@@ -3,27 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elecciones 2024</title>
+    <title>Votación de Iniciativas</title>
+ 
+    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <link rel="stylesheet" href="style.css">
+    </head>
+    </body>
+    
+    <body bgcolor="5ad7e1" 
+    ></body><div align="center">
+      <h1
+      style="color:black;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 70px;
+      align-self:center;
+      "
+       >Votación de Iniciativas</h1>
+    
+    </body>
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             margin: 20px;
+            text-align: center;
         }
-        h1 {
+        h1, h2 {
             color: #333;
         }
-        .candidato {
-            margin: 15px 0;
+        .iniciativa {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
         }
         .boton {
+            margin: 10px;
             padding: 10px 20px;
             font-size: 16px;
+            cursor: pointer;
             border: none;
             border-radius: 5px;
             background-color: #007BFF;
             color: white;
-            cursor: pointer;
         }
         .boton:hover {
             background-color: #0056b3;
@@ -31,52 +58,78 @@
         .resultados {
             margin-top: 30px;
         }
+        .resultado-item {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
-    <h1>Votaciones 2024</h1>
-    <p>Vota por tu candidato favorito:</p>
+    <p>Elige las iniciativas que te parezcan más importantes:</p>
 
-    <div class="candidato">
-        <button class="boton" onclick="votar('Candidato A')">Votar por Candidato A</button>
-    </div>
-    <div class="candidato">
-        <button class="boton" onclick="votar('Candidato B')">Votar por Candidato B</button>
-    </div>
-    <div class="candidato">
-        <button class="boton" onclick="votar('Candidato C')">Votar por Candidato C</button>
+    <div id="iniciativas">
+        <div class="iniciativa">
+            <h3>Mejor mantenimiento de computadoras</h3>
+            <button class="boton" onclick="votar('mantenimiento')">Votar</button>
+        </div>
+        <div class="iniciativa">
+            <h3>Más equipo deportivo</h3>
+            <button class="boton" onclick="votar('equipoDeportivo')">Votar</button>
+        </div>
+        <div class="iniciativa">
+            <h3>Donaciones de proyectores</h3>
+            <button class="boton" onclick="votar('donacionesProyectores')">Votar</button>
+        </div>
+        <div class="iniciativa">
+          <h3>Donaciones de Libros</h3>
+          <button class="boton" onclick="votar('donacionesLibros')">Votar</button>
+      </div>
     </div>
 
     <h2>Resultados</h2>
     <div id="resultados" class="resultados"></div>
 
     <script>
-        // Inicializa los votos en localStorage
-        const candidatos = ["Candidato A", "Candidato B", "Candidato C"];
-        if (!localStorage.getItem("votos")) {
-            const votosIniciales = { "Candidato A": 0, "Candidato B": 0, "Candidato C": 0 };
-            localStorage.setItem("votos", JSON.stringify(votosIniciales));
+        // Opciones de iniciativas
+        const iniciativas = {
+            mantenimiento: "Mejor mantenimiento de computadoras",
+            equipoDeportivo: "Más equipo deportivo",
+            donacionesProyectores: "Donaciones de proyectores",
+            donacionesLibros: "Donaciones de Libros",
+
+        };
+
+        // Inicializar votos en localStorage si no existen
+        if (!localStorage.getItem("votosIniciativas")) {
+            const votosIniciales = {
+                mantenimiento: 0,
+                equipoDeportivo: 0,
+                donacionesProyectores: 0,
+                donacionesLibros: 0,
+
+            };
+            localStorage.setItem("votosIniciativas", JSON.stringify(votosIniciales));
         }
 
-        // Función para votar
-        function votar(candidato) {
-            const votos = JSON.parse(localStorage.getItem("votos"));
-            votos[candidato]++;
-            localStorage.setItem("votos", JSON.stringify(votos));
+        // Función para votar por una iniciativa
+        function votar(opcion) {
+            const votos = JSON.parse(localStorage.getItem("votosIniciativas"));
+            votos[opcion]++;
+            localStorage.setItem("votosIniciativas", JSON.stringify(votos));
             mostrarResultados();
-            alert(`¡Gracias por votar por ${candidato}!`);
+            alert(`¡Gracias por votar por "${iniciativas[opcion]}"!`);
         }
 
-        // Función para mostrar resultados
+        // Función para mostrar los resultados
         function mostrarResultados() {
-            const votos = JSON.parse(localStorage.getItem("votos"));
+            const votos = JSON.parse(localStorage.getItem("votosIniciativas"));
             const resultadosDiv = document.getElementById("resultados");
-            resultadosDiv.innerHTML = ""; // Limpia los resultados previos
+            resultadosDiv.innerHTML = ""; // Limpiar resultados previos
 
-            for (const [candidato, cantidad] of Object.entries(votos)) {
-                const resultado = document.createElement("p");
-                resultado.textContent = `${candidato}: ${cantidad} votos`;
-                resultadosDiv.appendChild(resultado);
+            for (const [opcion, cantidad] of Object.entries(votos)) {
+                const resultadoItem = document.createElement("div");
+                resultadoItem.className = "resultado-item";
+                resultadoItem.textContent = `${iniciativas[opcion]}: ${cantidad} votos`;
+                resultadosDiv.appendChild(resultadoItem);
             }
         }
 
@@ -84,4 +137,29 @@
         mostrarResultados();
     </script>
 </body>
+</html>
+
+</body>
+
+<style>
+    a {
+        display: block;
+        width: 300px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700px;
+        border-radius: 10px;
+        margin: 15px 13px;
+        padding: 15px 30px;
+        background-color: aliceblue;
+    }
+    
+    
+    </style>
+    <body>
+        <a type="button" href="destino.html">Regresar a anterior pagina</a> 
+    </body>
+
+
+
+
 </html>
